@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContentComponent } from './pages/content/content.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { Dashboard_Component } from './pages/dashboard/dashboard.component';
