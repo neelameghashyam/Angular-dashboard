@@ -1,0 +1,75 @@
+<mat-toolbar class="mat-elevation-z3 flex justify-between">
+    <div class="flex items-center">
+      <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="ml-2">Angular</span>
+    </div>
+  
+    <div class="flex items-center gap-2">
+      <!-- Full Screen -->
+      <button mat-icon-button (click)="toggleFullScreen()" matTooltip="Full Screen">
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+  
+      <!-- Theme Selector -->
+      <button mat-icon-button [matMenuTriggerFor]="themeMenu" matTooltip="Theme">
+        <mat-icon>palette</mat-icon>
+      </button>
+      <mat-menu #themeMenu="matMenu">
+        <button mat-menu-item (click)="setTheme('light')">
+          <mat-icon>light_mode</mat-icon>
+          <span>Light</span>
+        </button>
+        <button mat-menu-item (click)="setTheme('dark')">
+          <mat-icon>dark_mode</mat-icon>
+          <span>Dark</span>
+        </button>
+        <button mat-menu-item (click)="setTheme('auto')">
+          <mat-icon>brightness_auto</mat-icon>
+          <span>System</span>
+        </button>
+      </mat-menu>
+  
+      <!-- Language Selector -->
+      <button mat-button [matMenuTriggerFor]="languageMenu" matTooltip="Language">
+        <span>{{ currentLanguage() }}</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item (click)="setLanguage('en')">
+          <span>English</span>
+        </button>
+        <button mat-menu-item (click)="setLanguage('fr')">
+          <span>French</span>
+        </button>
+      </mat-menu>
+  
+      <!-- Profile -->
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu" matTooltip="Profile">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container class="h-screen">
+    <mat-sidenav opened mode="side" [style.width]="sidenavWidth()" class="transition-all duration-300">
+      <app-custom-sidenav ></app-custom-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content [style.margin-left]="sidenavWidth()" class="content p-6 transition-all duration-300">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
