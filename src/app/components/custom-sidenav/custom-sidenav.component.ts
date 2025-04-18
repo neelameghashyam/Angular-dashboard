@@ -41,8 +41,16 @@ export class CustomSidenavComponent {
   });
 
   itemPadding = computed(() => {
-    if (this.responsiveService.isMobile()) return '16px 24px';
-    return this.sideNavCollapsed() ? '16px 8px' : '16px 16px';
+    if (this.responsiveService.isMobile()) return '12px 16px';
+    if (this.responsiveService.isTablet()) {
+      return this.sideNavCollapsed() ? '12px 0' : '12px 16px';
+    }
+    return this.sideNavCollapsed() ? '16px 0' : '16px 24px';
+  });
+
+  iconSize = computed(() => {
+    if (this.responsiveService.isMobile()) return '24px';
+    return this.sideNavCollapsed() ? '28px' : '24px'; // Larger when collapsed
   });
 
   @HostListener('window:resize')

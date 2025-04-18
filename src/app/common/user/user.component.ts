@@ -8,17 +8,25 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatMenuModule, MatDividerModule, NgClass],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+    NgClass
+    
+  ],
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'] // Make sure this is correctly linked
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
+[x: string]: any;
   showAvatar = true;
   user = {
-    avatar: '../../assets/image.png',
-    email: 'user@example.com',
-    status: 'online' // Default status
+    avatar: 'assets/image.png', 
+    status: 'online' as 'online' | 'away' | 'busy' | 'not-visible'
   };
+
 
   updateUserStatus(status: 'online' | 'away' | 'busy' | 'not-visible'): void {
     this.user.status = status;
@@ -26,5 +34,6 @@ export class UserComponent {
 
   signOut(): void {
     console.log('Sign out clicked');
+    // Add your sign out logic here
   }
 }

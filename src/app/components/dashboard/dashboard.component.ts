@@ -44,10 +44,12 @@ export class DashboardComponent {
     public responsiveService: ResponsiveService
   ) {}
 
-  // Methods
+  // Full screen toggle method
   toggleFullScreen() {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
+      document.documentElement.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -55,7 +57,8 @@ export class DashboardComponent {
     }
   }
 
-  setTheme(theme: string) {
+  // Theme setting method
+  setTheme(theme: 'light' | 'dark' | 'auto') {
     if (theme === 'auto') {
       localStorage.removeItem('darkMode');
       this.darkModeService.darkMode.set(window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -66,21 +69,29 @@ export class DashboardComponent {
     }
   }
 
+  // Language setting method
   setLanguage(lang: string) {
-    this.currentLanguage.set(lang === 'en' ? 'English' : 'हिन्दी');
+    this.currentLanguage.set(lang === 'en' ? 'English' : 'French');
   }
+
+  // Sidenav responsive properties
+  sidenavWidth = computed(() => {
+    if (this.responsiveService.isMobile()) return '0px';
+    if (this.responsiveService.isTablet()) {
+      return this.collapsed() ? '70px' : '220px';
+    }
+    return this.collapsed() ? '80px' : '280px';
+  });
+
+  sidenavMode = computed(() => {
+    return this.responsiveService.isMobile() ? 'over' : 'side';
+  });
+
+  sidenavOpened = computed(() => {
+    return !this.responsiveService.isMobile() || this.collapsed();
+  });
 
   toggleSidenav() {
     this.collapsed.set(!this.collapsed());
   }
-
-  sidenavWidth = computed(() => {
-    if (this.responsiveService.isMobile()) return '280px';
-    if (this.responsiveService.isTablet()) return this.collapsed() ? '64px' : '200px';
-    return this.collapsed() ? '72px' : '250px';
-  });
-
-  sidenavMode = computed(() => this.responsiveService.isMobile() ? 'over' : 'side');
-
-  sidenavOpened = computed(() => !this.responsiveService.isMobile() || this.collapsed());
 }

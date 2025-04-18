@@ -1,8 +1,9 @@
+<!-- custom-sidenav.component.html -->
 <div class="side-nav" [class.dark-mode]="darkModeService.darkMode()">
   <mat-nav-list>
     <a
       mat-list-item
-      class="menu-item flex items-center border-l-4"
+      class="menu-item flex items-center justify-center border-l-4"
       *ngFor="let item of menuItems()"
       [routerLink]="item.route"
       routerLinkActive="selected-menu-item"
@@ -20,10 +21,13 @@
         [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" 
         matListItemIcon
         [class.dark-icon]="darkModeService.darkMode()"
+        [style.font-size]="iconSize()"
+        [style.width]="iconSize()"
+        [style.height]="iconSize()"
       >
         {{ item.icon }}
       </mat-icon>
-      <span *ngIf="shouldShowLabel()" class="ml-3 label-text">{{ item.label }}</span>
+      <span *ngIf="shouldShowLabel()" class="ml-3 label-text whitespace-nowrap">{{ item.label }}</span>
     </a>
   </mat-nav-list>
 </div>
