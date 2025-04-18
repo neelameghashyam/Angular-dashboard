@@ -26,6 +26,11 @@ export class CustomSidenavComponent {
       route: 'dashboard',
     },
     {
+      icon: 'assignment',
+      label: 'Form',
+      route: 'form',
+    },
+    {
       icon: 'video_library',
       label: 'Content',
       route: 'content',
@@ -40,6 +45,7 @@ export class CustomSidenavComponent {
       label: 'Comments',
       route: 'comments',
     },
+    
   ]);
 
   sideNavCollapsed = signal(false);

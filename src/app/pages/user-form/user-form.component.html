@@ -1,0 +1,92 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-container" [class.dark-mode]="darkModeService.darkMode()">
+    <!-- Row 1: Full Name & Email -->
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Full Name</mat-label>
+        <mat-icon matPrefix class="form-icon">person</mat-icon>
+        <input matInput formControlName="fullName" class="form-input"/>
+        <mat-error *ngIf="submitted && f.fullName.errors?.required">
+          <mat-icon class="error-icon">error</mat-icon>
+          Full Name is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Email</mat-label>
+        <mat-icon matPrefix class="form-icon">email</mat-icon>
+        <input matInput type="email" formControlName="email" class="form-input"/>
+        <mat-error *ngIf="submitted && f.email.errors?.required">
+          <mat-icon class="error-icon">error</mat-icon>
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="submitted && f.email.errors?.email">
+          <mat-icon class="error-icon">error</mat-icon>
+          Please enter a valid email
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- Row 2: Phone & DOB -->
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Phone Number</mat-label>
+        <mat-icon matPrefix class="form-icon">phone</mat-icon>
+        <input matInput formControlName="phoneNumber" class="form-input"/>
+        <mat-error *ngIf="submitted && f.phoneNumber.errors?.required">
+          <mat-icon class="error-icon">error</mat-icon>
+          Phone Number is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Date of Birth</mat-label>
+        <mat-icon matPrefix class="form-icon">calendar_today</mat-icon>
+        <input matInput [matDatepicker]="picker" formControlName="dob" class="form-input"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="submitted && f.dob.errors?.required">
+          <mat-icon class="error-icon">error</mat-icon>
+          Date of Birth is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- Address -->
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label>Address</mat-label>
+      <mat-icon matPrefix class="form-icon">home</mat-icon>
+      <textarea matInput formControlName="address" rows="3" class="form-textarea"></textarea>
+      <mat-error *ngIf="submitted && f.address.errors?.required">
+        <mat-icon class="error-icon">error</mat-icon>
+        Address is required
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Country -->
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label>Country</mat-label>
+      <mat-icon matPrefix class="form-icon">public</mat-icon>
+      <mat-select formControlName="country" class="form-select">
+        <mat-option value="">-- Select Country --</mat-option>
+        <mat-option *ngFor="let c of countries" [value]="c">{{ c }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="submitted && f.country.errors?.required">
+        <mat-icon class="error-icon">error</mat-icon>
+        Please select a country
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" class="submit-button">
+        <mat-icon>send</mat-icon>
+        Submit Form
+      </button>
+    </div>
+  </form>
+  
+  <!-- Success Message -->
+  <div *ngIf="submitted && userForm.valid" class="success-message">
+    <mat-icon class="success-icon">check_circle</mat-icon>
+    <span>Your information has been submitted successfully!</span>
+  </div>

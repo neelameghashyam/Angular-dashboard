@@ -1,0 +1,197 @@
+
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  &.dark-mode {
+    background-color: #2d2d2d;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    
+    .mat-form-field-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      background-color: #3d3d3d;
+    }
+
+    /* Updated icon styling for dark mode */
+    .form-icon {
+      color: rgba(23, 23, 23, 0.87);  // Brighter white for better visibility
+    }
+
+    /* Specific styling for prefix icons */
+    mat-icon[matPrefix] {
+      color: rgba(35, 35, 35, 0.87);
+    }
+
+    /* Specific styling for suffix icons (like datepicker toggle) */
+    mat-icon[matSuffix] {
+      color: rgba(14, 14, 14, 0.87);
+    }
+
+    .form-input, 
+    .form-textarea,
+    .mat-select-value {
+      color: rgba(255, 255, 255, 0.87);
+    }
+
+    .mat-form-field-outline {
+      background-color: #3d3d3d;
+    }
+
+    .success-message {
+      background-color: #1b5e20;
+      color: rgba(255, 255, 255, 0.87);
+      
+      .success-icon {
+        color: #81c784;
+      }
+    }
+
+    /* Error states */
+    .mat-error {
+      color: #ff8a80;
+    }
+
+    .error-icon {
+      color: #ff8a80;
+    }
+
+    /* Datepicker toggle icon */
+    .mat-datepicker-toggle {
+      color: rgba(255, 255, 255, 0.87);
+    }
+
+    /* Select dropdown arrow */
+    .mat-select-arrow {
+      color: rgba(255, 255, 255, 0.87);
+    }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.form-field, .full-width-field {
+  width: 100%;
+  margin-bottom: 1rem;
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0.5em;
+  }
+
+  .mat-form-field-infix {
+    border-top: 0;
+    padding: 0.8em 0;
+  }
+
+  .mat-form-field-label {
+    color: #5f6368;
+    font-weight: 400;
+  }
+
+  .mat-form-field-outline {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 0 0.75em 0 0.75em;
+  }
+}
+
+.form-icon {
+  color: #000000;
+  margin-right: 8px;
+
+}
+
+.form-input, .form-textarea {
+  font-size: 1rem;
+  color: #202124;
+}
+
+.form-select {
+  .mat-select-value {
+    color: #202124;
+  }
+}
+
+.error-icon {
+  color: #d32f2f;
+  font-size: 1.1rem;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.mat-error {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  color: #d32f2f;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  padding: 0.6rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+
+  mat-icon {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.success-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 1.2rem;
+  margin-top: 1.5rem;
+  background-color: #e8f5e9;
+  border-radius: 8px;
+  color: #2e7d32;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+
+  .success-icon {
+    color: #2e7d32;
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
