@@ -106,7 +106,7 @@
 
 .content {
   padding: 1rem;
-  min-height: calc(100vh - 48px - 60px); // Adjusted for smaller header
+  min-height: calc(100vh - 48px - 60px); 
 }
 
 .dark-mode {
@@ -135,7 +135,6 @@ mat-menu {
 }
 
 .dark-mode {
-  // Language selector button
   .languageMenu {
     color: rgba(255, 255, 255, 0.87) !important;
     background-color: transparent !important;
@@ -149,7 +148,6 @@ mat-menu {
     }
   }
 
-  // Language dropdown menu
   .mat-menu-panel.language-menu {
     background-color: #424242 !important;
     

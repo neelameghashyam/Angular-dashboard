@@ -67,5 +67,5 @@ export class DashboardComponent {
     // Implement logout logic
   }
 
-  sidenavWidth = computed(() => (this.collapsed() ? '64px' : '250px'));
+  sidenavWidth = computed(() => (this.collapsed() ? '56px' : '250px'));
 }
