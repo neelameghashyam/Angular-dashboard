@@ -3,6 +3,47 @@
   height: 100%;
   transition: all 0.3s ease;
 
+  // Light mode default styles
+  .mat-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    color: black; // Default black icons in light mode
+  }
+
+  .menu-item {
+    border-left-width: 4px;
+    transition: all 0.3s ease;
+    color: rgba(0, 0, 0, 0.87); // Default black text in light mode
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    span {
+      color: rgba(0, 0, 0, 0.87); // Black text for labels
+    }
+  }
+
+  .selected-menu-item {
+    border-left-color: rgb(20, 20, 20) !important;
+    background: rgb(220, 220, 220) !important; // Light gray background
+    color: rgb(0, 0, 0) !important; // Black text
+
+    .mat-icon {
+      color: black !important;
+    }
+
+    span {
+      color: black !important;
+    }
+
+    &:hover {
+      background: rgb(200, 200, 200) !important; // Slightly darker on hover
+    }
+  }
+
+  // Dark mode overrides
   &.dark-mode {
     background-color: #1e1e1e;
     color: rgba(255, 255, 255, 0.87);
@@ -11,57 +52,35 @@
       color: rgba(255, 255, 255, 0.87);
 
       &:hover {
-        background-color: rgba(106, 106, 106, 0.87) !important;
+        background-color: rgba(255, 255, 255, 0.04) !important;
       }
 
-      &.dark-mode-item {
-        color: white;
+      span {
+        color: rgba(255, 255, 255, 0.87);
       }
     }
-    .dark-icon {
-      color: white !important;
-    }
-
-    .mat-list-item {
-      color: white !important;
-    }
-    .menu-item span {
-      color: rgba(255, 255, 255, 0.87);
-    }
-  }
-
-  .menu-item {
-    border-left-width: 4px;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: rgba(106, 106, 106, 0.04);
-    }
-  }
-
-  .selected-menu-item {
-    border-left-color: white !important;
-    background: rgb(117, 116, 116) !important;
-    color: white !important;
 
     .mat-icon {
       color: white !important;
     }
 
-    span {
+    .selected-menu-item {
+      border-left-color: white !important;
+      background: rgb(117, 116, 116) !important;
       color: white !important;
+
+      .mat-icon {
+        color: white !important;
+      }
+
+      span {
+        color: white !important;
+      }
+
+      &:hover {
+        background: rgb(140, 140, 140) !important;
+      }
     }
-
-    &:hover {
-      background: rgb(140, 140, 140) !important; // Slightly lighter on hover
-    }
-  }
-
-
-  .mat-icon {
-    width: 24px;
-    height: 24px;
-    font-size: 24px;
   }
 
   .mat-nav-list {
