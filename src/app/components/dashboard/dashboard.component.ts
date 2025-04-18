@@ -1,4 +1,3 @@
-// dashboard.component.ts
 import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -44,7 +43,6 @@ export class DashboardComponent {
     public responsiveService: ResponsiveService
   ) {}
 
-  // Full screen toggle method
   toggleFullScreen() {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(err => {
@@ -57,7 +55,6 @@ export class DashboardComponent {
     }
   }
 
-  // Theme setting method
   setTheme(theme: 'light' | 'dark' | 'auto') {
     if (theme === 'auto') {
       localStorage.removeItem('darkMode');
@@ -69,14 +66,12 @@ export class DashboardComponent {
     }
   }
 
-  // Language setting method
   setLanguage(lang: string) {
     this.currentLanguage.set(lang === 'en' ? 'English' : 'French');
   }
 
-  // Sidenav responsive properties
   sidenavWidth = computed(() => {
-    if (this.responsiveService.isMobile()) return '0px';
+    if (this.responsiveService.isMobile()) return '280px';
     if (this.responsiveService.isTablet()) {
       return this.collapsed() ? '70px' : '220px';
     }
@@ -88,7 +83,7 @@ export class DashboardComponent {
   });
 
   sidenavOpened = computed(() => {
-    return !this.responsiveService.isMobile() || this.collapsed();
+    return !this.responsiveService.isMobile() || !this.collapsed();
   });
 
   toggleSidenav() {

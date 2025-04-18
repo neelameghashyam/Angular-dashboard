@@ -1,4 +1,3 @@
-// custom-sidenav.component.ts
 import { Component, computed, Input, signal, inject, HostListener } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,6 +47,7 @@ export class CustomSidenavComponent {
     return this.sideNavCollapsed() ? '16px 0' : '16px 24px';
   });
 
+  // Add this missing computed property
   iconSize = computed(() => {
     if (this.responsiveService.isMobile()) return '24px';
     return this.sideNavCollapsed() ? '28px' : '24px'; // Larger when collapsed
