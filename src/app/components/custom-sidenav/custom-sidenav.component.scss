@@ -11,18 +11,13 @@
       color: rgba(255, 255, 255, 0.87);
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.04) !important;
+        background-color: rgba(106, 106, 106, 0.87) !important;
       }
 
       &.dark-mode-item {
         color: white;
       }
     }
-
-    .sidenav-header {
-      border-bottom: 1px solid #333;
-    }
-
     .dark-icon {
       color: white !important;
     }
@@ -40,20 +35,28 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
+      background-color: rgba(106, 106, 106, 0.04);
     }
   }
 
   .selected-menu-item {
-    border-left-color: black;
-    background: rgba(0, 0, 0, 0.05);
+    border-left-color: white !important;
+    background: rgb(117, 116, 116) !important;
+    color: white !important;
 
-    .dark-mode & {
-      border-left-color: white;
-      background: rgba(255, 255, 255, 0.05);
+    .mat-icon {
       color: white !important;
     }
+
+    span {
+      color: white !important;
+    }
+
+    &:hover {
+      background: rgb(140, 140, 140) !important; // Slightly lighter on hover
+    }
   }
+
 
   .mat-icon {
     width: 24px;
