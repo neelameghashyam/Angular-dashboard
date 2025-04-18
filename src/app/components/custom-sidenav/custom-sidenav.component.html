@@ -1,25 +1,27 @@
-<div class="side-nav">
-
-<div class="sidenav-header py-6 text-center">
-    <div class="header-text transition-all duration-300 overflow-hidden"
-      [ngClass]="{'opacity-0 h-0': sideNavCollapsed(), 'opacity-100 h-auto': !sideNavCollapsed()}">
-    </div>
-  </div>
-      <mat-nav-list>
-        <a
-        mat-list-item
-        class="menu-item flex items-center border-l-4"
-        *ngFor="let item of menuItems()"
-        [routerLink]="item.route"
-        routerLinkActive="selected-menu-item"
-        #rla="routerLinkActive"
-        [ngClass]="{ 'border-transparent': !rla.isActive, 'border-black bg-gray-100': rla.isActive }"
+<div class="side-nav" [class.dark-mode]="darkModeService.darkMode()">
+  <mat-nav-list>
+    <a
+      mat-list-item
+      class="menu-item flex items-center border-l-4"
+      *ngFor="let item of menuItems()"
+      [routerLink]="item.route"
+      routerLinkActive="selected-menu-item"
+      #rla="routerLinkActive"
+      [ngClass]="{
+        'border-transparent': !rla.isActive,
+        'border-black bg-gray-100': rla.isActive && !darkModeService.darkMode(),
+        'border-white bg-gray-800': rla.isActive && darkModeService.darkMode()
+      }"
+      [class.dark-mode-item]="darkModeService.darkMode()"
+    >
+      <mat-icon 
+        [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" 
+        matListItemIcon
+        [class.dark-icon]="darkModeService.darkMode()"
       >
-          <mat-icon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" matListItemIcon>
-            {{ item.icon }}
-          </mat-icon>
-          <span *ngIf="!sideNavCollapsed()" class="ml-3">{{ item.label }}</span>
-        </a>
-      </mat-nav-list>
-
-    </div>
+        {{ item.icon }}
+      </mat-icon>
+      <span *ngIf="!sideNavCollapsed()" class="ml-3">{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+</div>

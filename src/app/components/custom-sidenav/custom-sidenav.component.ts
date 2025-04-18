@@ -3,6 +3,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DarkModeService } from 'src/app/services/dark-theme/dark-mode.service';
 
 interface MenuItem {
   icon: string;
@@ -46,4 +47,6 @@ export class CustomSidenavComponent {
     this.sideNavCollapsed.set(val);
   }
 
+    constructor(public darkModeService: DarkModeService) {}
+  
 }

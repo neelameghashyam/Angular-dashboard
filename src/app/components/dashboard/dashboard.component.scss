@@ -1,0 +1,170 @@
+// dashboard.component.scss
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    
+    // Apply dark mode colors to the container
+    .dark-mode & {
+      background-color: #121212;
+      color: rgba(255, 255, 255, 0.87);
+    }
+}
+
+.header {
+    &.sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    // Dark mode header styles
+    .dark-mode & {
+      background-color: #1e1e1e;
+      
+      mat-toolbar {
+        background-color: #1e1e1e;
+        color: rgba(255, 255, 255, 0.87);
+      }
+    }
+}
+
+.main-content {
+    flex: 1; 
+    overflow: auto;
+    
+    // Dark mode content styles
+    .dark-mode & {
+      background-color: #121212;
+      
+      mat-sidenav-container {
+        background-color: #121212;
+      }
+      
+      mat-sidenav {
+        background-color: #1e1e1e;
+        color: rgba(255, 255, 255, 0.87);
+      }
+      
+      mat-sidenav-content {
+        background-color: #121212;
+      }
+    }
+}
+
+.footer {
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+  
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+  
+      a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s;
+  
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    // Dark mode footer styles
+    .dark-mode & {
+      background-color: #1e1e1e;
+      border-top: 1px solid #333;
+
+      a {
+        color: #aaa;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+}
+
+.content {
+    padding: 1rem;
+    min-height: calc(100vh - 64px - 60px); 
+}
+
+// mat-sidenav-container {
+//     min-height: 100%;
+    
+//     // Dark mode sidenav container
+//     .dark-mode & {
+//       background-color: #121212;
+//     }
+// }
+
+// Additional dark mode styles for Material components
+.dark-mode {
+  mat-toolbar {
+    background-color: #1e1e1e !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+  }
+  
+  mat-sidenav {
+    background-color: #1e1e1e !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+  }
+  
+  mat-menu {
+    background-color: #1e1e1e !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+    
+    .mat-menu-item {
+      color: rgba(255, 255, 255, 0.87) !important;
+      
+      &:hover {
+        background-color: #333 !important;
+      }
+    }
+  }
+}
+
+// Remove the existing .languageMenu style and replace with:
+
+.dark-mode {
+    // Language selector button
+    .languageMenu {
+      color: rgba(255, 255, 255, 0.87) !important;
+      background-color: transparent !important;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+      }
+      
+      .mat-icon {
+        color: rgba(255, 255, 255, 0.87) !important;
+      }
+    }
+  
+    // Language dropdown menu
+    .mat-menu-panel.language-menu {
+      background-color: #424242 !important;
+      
+      .mat-menu-item {
+        color: rgba(122, 122, 122, 0.87) !important;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.04) !important;
+        }
+      }
+    }
+  }
