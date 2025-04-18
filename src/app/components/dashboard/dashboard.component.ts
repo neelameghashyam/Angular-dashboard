@@ -11,21 +11,23 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { DarkModeService } from '../../services/dark-theme/dark-mode.service';
+import { UserComponent } from "../../common/user/user.component";
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    CommonModule, 
-    MatButtonModule, 
-    MatIconModule, 
-    MatToolbarModule, 
+    RouterOutlet,
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
     MatSidenavModule,
     CustomSidenavComponent,
     MatMenuModule,
     MatBadgeModule,
-    MatTooltipModule
-  ],
+    MatTooltipModule,
+    UserComponent
+],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
