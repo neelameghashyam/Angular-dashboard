@@ -12,6 +12,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { DarkModeService } from '../../services/dark-theme/dark-mode.service';
 import { UserComponent } from "../../common/user/user.component";
+import { ResponsiveService } from '../../services/responsive.service';
+import { MatSidenav } from '@angular/material/sidenav';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -27,16 +30,20 @@ import { UserComponent } from "../../common/user/user.component";
     MatBadgeModule,
     MatTooltipModule,
     UserComponent
-],
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  collapsed = signal(true);
+  collapsed = signal(false);
   notificationCount = signal(""); 
   currentLanguage = signal('English');
 
-  constructor(public darkModeService: DarkModeService) {}
+  constructor(
+    public darkModeService: DarkModeService,
+    public responsiveService: ResponsiveService
+  ) {}
+
   // Methods
   toggleFullScreen() {
     if (!document.fullscreenElement) {
@@ -63,9 +70,17 @@ export class DashboardComponent {
     this.currentLanguage.set(lang === 'en' ? 'English' : 'हिन्दी');
   }
 
-  logout() {
-    // Implement logout logic
+  toggleSidenav() {
+    this.collapsed.set(!this.collapsed());
   }
 
-  sidenavWidth = computed(() => (this.collapsed() ? '56px' : '250px'));
+  sidenavWidth = computed(() => {
+    if (this.responsiveService.isMobile()) return '280px';
+    if (this.responsiveService.isTablet()) return this.collapsed() ? '64px' : '200px';
+    return this.collapsed() ? '72px' : '250px';
+  });
+
+  sidenavMode = computed(() => this.responsiveService.isMobile() ? 'over' : 'side');
+
+  sidenavOpened = computed(() => !this.responsiveService.isMobile() || this.collapsed());
 }

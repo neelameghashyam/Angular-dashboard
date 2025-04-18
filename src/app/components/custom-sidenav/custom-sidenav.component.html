@@ -7,10 +7,12 @@
       [routerLink]="item.route"
       routerLinkActive="selected-menu-item"
       #rla="routerLinkActive"
+      [style.padding]="itemPadding()"
       [ngClass]="{
         'border-transparent': !rla.isActive,
         'border-black bg-gray-100': rla.isActive && !darkModeService.darkMode(),
-        'border-white bg-gray-800': rla.isActive && darkModeService.darkMode()
+        'border-white bg-gray-800': rla.isActive && darkModeService.darkMode(),
+        'collapsed': sideNavCollapsed() && !responsiveService.isMobile()
       }"
       [class.dark-mode-item]="darkModeService.darkMode()"
     >
@@ -21,7 +23,7 @@
       >
         {{ item.icon }}
       </mat-icon>
-      <span *ngIf="!sideNavCollapsed()" class="ml-3">{{ item.label }}</span>
+      <span *ngIf="shouldShowLabel()" class="ml-3 label-text">{{ item.label }}</span>
     </a>
   </mat-nav-list>
 </div>

@@ -2,6 +2,49 @@
   background-color: white;
   height: 100%;
   transition: all 0.3s ease;
+  width: 100%;
+  overflow-x: hidden;
+
+  // custom-sidenav.component.scss
+.side-nav {
+  // ... existing styles ...
+
+  // Mobile styles
+  @media (max-width: 599px) {
+    width: 100%;
+    
+    .menu-item {
+      padding: 12px 16px !important;
+      justify-content: flex-start;
+    }
+  }
+
+  // Tablet styles
+  @media (min-width: 600px) and (max-width: 1279px) {
+    width: 200px;
+    
+    .menu-item {
+      padding: 16px 12px !important;
+      
+      &.collapsed {
+        padding: 16px 8px !important;
+      }
+    }
+  }
+
+  // Desktop styles
+  @media (min-width: 1280px) {
+    width: 250px;
+    
+    .menu-item {
+      padding: 16px 24px !important;
+      
+      &.collapsed {
+        padding: 16px 12px !important;
+      }
+    }
+  }
+}
 
   // Light mode default styles
   .mat-icon {
@@ -9,37 +52,50 @@
     height: 24px;
     font-size: 24px;
     color: black; // Default black icons in light mode
+    transition: all 0.3s ease;
   }
 
   .menu-item {
     border-left-width: 4px;
     transition: all 0.3s ease;
-    color: rgba(0, 0, 0, 0.87); // Default black text in light mode
+    color: rgba(0, 0, 0, 0.87);
+    white-space: nowrap;
+    overflow: hidden;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
     }
 
-    span {
-      color: rgba(0, 0, 0, 0.87); // Black text for labels
+    .label-text {
+      color: rgba(0, 0, 0, 0.87);
+      transition: opacity 0.2s ease;
+    }
+
+    &.collapsed {
+      justify-content: center;
+      
+      .label-text {
+        opacity: 0;
+        width: 0;
+      }
     }
   }
 
   .selected-menu-item {
     border-left-color: rgb(20, 20, 20) !important;
-    background: rgb(220, 220, 220) !important; // Light gray background
-    color: rgb(0, 0, 0) !important; // Black text
+    background: rgb(220, 220, 220) !important;
+    color: rgb(0, 0, 0) !important;
 
     .mat-icon {
       color: black !important;
     }
 
-    span {
+    .label-text {
       color: black !important;
     }
 
     &:hover {
-      background: rgb(200, 200, 200) !important; // Slightly darker on hover
+      background: rgb(200, 200, 200) !important;
     }
   }
 
@@ -55,7 +111,7 @@
         background-color: rgba(255, 255, 255, 0.04) !important;
       }
 
-      span {
+      .label-text {
         color: rgba(255, 255, 255, 0.87);
       }
     }
@@ -73,7 +129,7 @@
         color: white !important;
       }
 
-      span {
+      .label-text {
         color: white !important;
       }
 
@@ -85,5 +141,39 @@
 
   .mat-nav-list {
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Responsive adjustments
+  @media (max-width: 599px) {
+    // Mobile styles
+    .menu-item {
+      padding: 8px 16px !important;
+      justify-content: flex-start;
+      
+      .label-text {
+        opacity: 1 !important;
+        width: auto !important;
+      }
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1279px) {
+    // Tablet styles
+    width: 200px;
+    
+    .menu-item {
+      padding: 12px 16px !important;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    // Desktop styles
+    width: 250px;
+    
+    .menu-item {
+      padding: 12px 24px !important;
+    }
   }
 }

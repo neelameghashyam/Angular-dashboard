@@ -1,3 +1,4 @@
+// dashboard.component.scss
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -25,13 +26,13 @@
     mat-toolbar {
       background-color: #1e1e1e;
       color: rgba(255, 255, 255, 0.87);
-      height: 48px; // Match the header height
+      height: 48px;
       min-height: 48px;
     }
   }
 
   mat-toolbar {
-    height: 48px; // Match the header height
+    height: 48px;
     min-height: 48px;
   }
 }
@@ -54,6 +55,14 @@
     
     mat-sidenav-content {
       background-color: #121212;
+    }
+  }
+
+  mat-sidenav-container {
+    height: 100%;
+    
+    mat-sidenav {
+      box-shadow: 3px 0 6px rgba(0,0,0,0.24);
     }
   }
 }
@@ -107,31 +116,35 @@
 .content {
   padding: 1rem;
   min-height: calc(100vh - 48px - 60px); 
+  
+  @media (max-width: 599px) {
+    padding: 0.5rem;
+  }
 }
 
 .dark-mode {
-mat-toolbar {
-  background-color: #1e1e1e !important;
-  color: rgba(255, 255, 255, 0.87) !important;
-}
+  mat-toolbar {
+    background-color: #1e1e1e !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+  }
 
-mat-sidenav {
-  background-color: #1e1e1e !important;
-  color: rgba(255, 255, 255, 0.87) !important;
-}
+  mat-sidenav {
+    background-color: #1e1e1e !important;
+    color: rgba(255, 255, 255, 0.87) !important;
+  }
 
-mat-menu {
-  background-color: #1e1e1e !important;
-  color: rgba(255, 255, 255, 0.87) !important;
-  
-  .mat-menu-item {
+  mat-menu {
+    background-color: #1e1e1e !important;
     color: rgba(255, 255, 255, 0.87) !important;
     
-    &:hover {
-      background-color: #333 !important;
+    .mat-menu-item {
+      color: rgba(255, 255, 255, 0.87) !important;
+      
+      &:hover {
+        background-color: #333 !important;
+      }
     }
   }
-}
 }
 
 .dark-mode {
@@ -158,5 +171,76 @@ mat-menu {
         background-color: rgba(255, 255, 255, 0.04) !important;
       }
     }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 599px) {
+  // Mobile styles
+  .header {
+    mat-toolbar {
+      padding: 0 8px;
+    }
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1279px) {
+  // Tablet styles
+  .sidenav-width {
+    width: 200px;
+  }
+}
+
+@media (min-width: 1280px) {
+  // Desktop styles
+  .sidenav-width {
+    width: 250px;
+  }
+}
+
+// dashboard.component.scss
+// Add these responsive styles:
+
+@media (max-width: 599px) {
+  // Mobile styles
+  .header {
+    mat-toolbar {
+      padding: 0 8px;
+      
+      span.ml-2 {
+        display: none; // Hide title on mobile
+      }
+    }
+  }
+  
+  .content {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  // Tablet portrait
+  .content {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1279px) {
+  // Tablet landscape
+  .content {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  // Desktop
+  .content {
+    padding: 2rem;
   }
 }

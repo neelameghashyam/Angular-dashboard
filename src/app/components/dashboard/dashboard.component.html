@@ -4,7 +4,7 @@
   <header class="header sticky" [class.dark-mode]="darkModeService.darkMode()">
     <mat-toolbar class="mat-elevation-z3 flex justify-between">
       <div class="flex items-center">
-        <button mat-icon-button (click)="collapsed.set(!collapsed())">
+        <button mat-icon-button (click)="toggleSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="ml-2">Angular</span>
@@ -58,10 +58,20 @@
   <!-- Main Content with Sidenav -->
   <main class="main-content">
     <mat-sidenav-container class="h-full">
-      <mat-sidenav opened mode="side" [style.width]="sidenavWidth()" class="transition-all duration-300">
-        <app-custom-sidenav></app-custom-sidenav>
+      <mat-sidenav 
+        #sidenav
+        [mode]="sidenavMode()"
+        [opened]="sidenavOpened()"
+        [style.width]="sidenavWidth()" 
+        class="transition-all duration-300"
+        [fixedInViewport]="responsiveService.isMobile()"
+        [fixedTopGap]="48">
+        <app-custom-sidenav [collapsed]="collapsed()"></app-custom-sidenav>
       </mat-sidenav>
-      <mat-sidenav-content [style.margin-left]="sidenavWidth()" class="content transition-all duration-300">
+      <mat-sidenav-content 
+        [style.margin-left]="responsiveService.isMobile() ? '0px' : sidenavWidth()" 
+        class="content transition-all duration-300"
+        (click)="responsiveService.isMobile() && collapsed() && collapsed.set(false)">
         <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>

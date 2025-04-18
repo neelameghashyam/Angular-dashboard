@@ -1,9 +1,11 @@
-import { Component, computed, Input, signal } from '@angular/core';
+// custom-sidenav.component.ts
+import { Component, computed, Input, signal, inject, HostListener } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DarkModeService } from 'src/app/services/dark-theme/dark-mode.service';
+import { ResponsiveService } from 'src/app/services/responsive.service';
 
 interface MenuItem {
   icon: string;
@@ -19,33 +21,14 @@ interface MenuItem {
   styleUrl: './custom-sidenav.component.scss'
 })
 export class CustomSidenavComponent {
+  public responsiveService = inject(ResponsiveService);
+  
   menuItems = signal<MenuItem[]>([
-    {
-      icon: 'dashboard',
-      label: 'Dashboard',
-      route: 'dashboard',
-    },
-    {
-      icon: 'assignment',
-      label: 'Form',
-      route: 'form',
-    },
-    {
-      icon: 'video_library',
-      label: 'Content',
-      route: 'content',
-    },
-    {
-      icon: 'analytics',
-      label: 'Analytics',
-      route: 'analytics',
-    },
-    {
-      icon: 'comment',
-      label: 'Comments',
-      route: 'comments',
-    },
-    
+    { icon: 'dashboard', label: 'Dashboard', route: 'dashboard' },
+    { icon: 'assignment', label: 'Form', route: 'form' },
+    { icon: 'video_library', label: 'Content', route: 'content' },
+    { icon: 'analytics', label: 'Analytics', route: 'analytics' },
+    { icon: 'comment', label: 'Comments', route: 'comments' },
   ]);
 
   sideNavCollapsed = signal(false);
@@ -53,6 +36,21 @@ export class CustomSidenavComponent {
     this.sideNavCollapsed.set(val);
   }
 
-    constructor(public darkModeService: DarkModeService) {}
-  
+  shouldShowLabel = computed(() => {
+    return !this.sideNavCollapsed() || this.responsiveService.isMobile();
+  });
+
+  itemPadding = computed(() => {
+    if (this.responsiveService.isMobile()) return '16px 24px';
+    return this.sideNavCollapsed() ? '16px 8px' : '16px 16px';
+  });
+
+  @HostListener('window:resize')
+  onResize() {
+    if (!this.responsiveService.isMobile() && this.sideNavCollapsed()) {
+      this.sideNavCollapsed.set(false);
+    }
+  }
+
+  constructor(public darkModeService: DarkModeService) {}
 }
