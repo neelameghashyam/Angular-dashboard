@@ -1,160 +1,164 @@
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-    
-    // Apply dark mode colors to the container
-    .dark-mode & {
-      background-color: #121212;
-      color: rgba(255, 255, 255, 0.87);
-    }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  
+  .dark-mode & {
+    background-color: #121212;
+    color: rgba(255, 255, 255, 0.87);
+  }
 }
 
 .header {
-    &.sticky {
-      padding: 0.1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+  &.sticky {
+    padding: 0rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 40px; 
+    min-height: 40px; 
+  }
 
-    // Dark mode header styles
-    .dark-mode & {
+  .dark-mode & {
+    background-color: #1e1e1e;
+    
+    mat-toolbar {
       background-color: #1e1e1e;
-      
-      mat-toolbar {
-        background-color: #1e1e1e;
-        color: rgba(255, 255, 255, 0.87);
-      }
+      color: rgba(255, 255, 255, 0.87);
+      height: 48px; // Match the header height
+      min-height: 48px;
     }
+  }
+
+  mat-toolbar {
+    height: 48px; // Match the header height
+    min-height: 48px;
+  }
 }
 
 .main-content {
-    flex: 1; 
-    overflow: auto;
+  flex: 1; 
+  overflow: auto;
+  
+  .dark-mode & {
+    background-color: #121212;
     
-    .dark-mode & {
+    mat-sidenav-container {
       background-color: #121212;
-      
-      mat-sidenav-container {
-        background-color: #121212;
-      }
-      
-      mat-sidenav {
-        background-color: #1e1e1e;
-        color: rgba(255, 255, 255, 0.87);
-      }
-      
-      mat-sidenav-content {
-        background-color: #121212;
-      }
     }
+    
+    mat-sidenav {
+      background-color: #1e1e1e;
+      color: rgba(255, 255, 255, 0.87);
+    }
+    
+    mat-sidenav-content {
+      background-color: #121212;
+    }
+  }
 }
 
 .footer {
-    padding: 0.25rem;
-    border-top: 1px solid #e0e0e0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-  
-    .footer-links {
-      display: flex;
-      gap: 1rem;
-  
-      a {
-        color: #666;
-        text-decoration: none;
-        transition: color 0.3s;
-  
-        &:hover {
-          color: #333;
-        }
+  padding: 0.25rem;
+  border-top: 1px solid #e0e0e0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #333;
       }
     }
+  }
 
-    // Dark mode footer styles
-    .dark-mode & {
-      background-color: #1e1e1e;
-      border-top: 1px solid #333;
+  // Dark mode footer styles
+  .dark-mode & {
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
 
-      a {
-        color: #aaa;
+    a {
+      color: #aaa;
 
-        &:hover {
-          color: #fff;
-        }
+      &:hover {
+        color: #fff;
       }
     }
+  }
 }
 
 .content {
-    padding: 1rem;
-    min-height: calc(100vh - 64px - 60px); 
+  padding: 1rem;
+  min-height: calc(100vh - 48px - 60px); // Adjusted for smaller header
 }
 
-
 .dark-mode {
-  mat-toolbar {
-    background-color: #1e1e1e !important;
-    color: rgba(255, 255, 255, 0.87) !important;
-  }
+mat-toolbar {
+  background-color: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+mat-sidenav {
+  background-color: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+mat-menu {
+  background-color: #1e1e1e !important;
+  color: rgba(255, 255, 255, 0.87) !important;
   
-  mat-sidenav {
-    background-color: #1e1e1e !important;
-    color: rgba(255, 255, 255, 0.87) !important;
-  }
-  
-  mat-menu {
-    background-color: #1e1e1e !important;
+  .mat-menu-item {
     color: rgba(255, 255, 255, 0.87) !important;
     
-    .mat-menu-item {
-      color: rgba(255, 255, 255, 0.87) !important;
-      
-      &:hover {
-        background-color: #333 !important;
-      }
+    &:hover {
+      background-color: #333 !important;
     }
   }
 }
-
-// Remove the existing .languageMenu style and replace with:
+}
 
 .dark-mode {
-    // Language selector button
-    .languageMenu {
+  // Language selector button
+  .languageMenu {
+    color: rgba(255, 255, 255, 0.87) !important;
+    background-color: transparent !important;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.04) !important;
+    }
+    
+    .mat-icon {
       color: rgba(255, 255, 255, 0.87) !important;
-      background-color: transparent !important;
+    }
+  }
+
+  // Language dropdown menu
+  .mat-menu-panel.language-menu {
+    background-color: #424242 !important;
+    
+    .mat-menu-item {
+      color: rgba(122, 122, 122, 0.87) !important;
       
       &:hover {
         background-color: rgba(255, 255, 255, 0.04) !important;
       }
-      
-      .mat-icon {
-        color: rgba(255, 255, 255, 0.87) !important;
-      }
-    }
-  
-    // Language dropdown menu
-    .mat-menu-panel.language-menu {
-      background-color: #424242 !important;
-      
-      .mat-menu-item {
-        color: rgba(122, 122, 122, 0.87) !important;
-        
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.04) !important;
-        }
-      }
     }
   }
+}
