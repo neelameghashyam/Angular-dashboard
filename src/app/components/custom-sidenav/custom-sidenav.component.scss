@@ -3,30 +3,29 @@
   height: 100%;
   transition: all 0.3s ease;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
   .mat-nav-list {
-    padding-top: 8px;
+    padding: 8px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    overflow-y: auto;
   }
 
   .mat-icon {
-    color: rgba(0, 0, 0, 0.87); // Default icon color in light mode
+    color: rgba(0, 0, 0, 0.6);
+    margin-right: 8px;
   }
 
   .menu-item {
-    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 12px;
     transition: all 0.3s ease;
     color: rgba(0, 0, 0, 0.87);
-    margin: 0 8px;
-    border-radius: 8px;
-    min-height: 48px;
+    display: flex;
+    align-items: center;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
@@ -40,27 +39,28 @@
 
     &.collapsed {
       justify-content: center;
-      margin: 0 4px;
+      padding: 12px 0;
+      
+      .mat-icon {
+        margin-right: 0;
+      }
       
       .label-text {
-        opacity: 0;
-        width: 0;
+        display: none;
       }
     }
   }
 
-  // Selected item styles
   .selected-menu-item {
-    border-left-color: #7e7e7e !important;
     background: rgba(63, 81, 181, 0.08) !important;
-    color: #090909 !important;
+    color: #3f51b5 !important;
 
     .mat-icon {
-      color: #1b1a1a !important;
+      color: #3f51b5 !important;
     }
 
     .label-text {
-      color: #1b1b1b !important;
+      color: #3f51b5 !important;
       font-weight: 600;
     }
 
@@ -69,14 +69,12 @@
     }
   }
 
-  // Dark mode styles
   &.dark-mode {
     background-color: #1e1e1e;
     color: rgba(255, 255, 255, 0.87);
 
-    // All mat-icons in dark mode
     .mat-icon {
-      color: white !important;
+      color: rgba(255, 255, 255, 0.6) !important;
     }
 
     .menu-item {
@@ -92,87 +90,19 @@
     }
 
     .selected-menu-item {
-      border-left-color: #a4a4a4 !important;
-      background: rgba(121, 134, 203, 0.16) !important;
-      color: #ffffff !important;
+      background: rgba(101, 115, 195, 0.16) !important;
+      color: #6573c3 !important;
 
       .mat-icon {
-        color: #ffffff !important;
+        color: #6573c3 !important;
       }
 
       .label-text {
-        color: #ffffff !important;
+        color: #6573c3 !important;
       }
 
       &:hover {
-        background: rgba(121, 134, 203, 0.24) !important;
-      }
-    }
-  }
-
-  // Responsive adjustments
-  @media (max-width: 599px) {
-    width: 100%;
-    
-    .menu-item {
-      padding: 12px 16px !important;
-      justify-content: flex-start !important;
-      
-      .label-text {
-        opacity: 1 !important;
-        width: auto !important;
-      }
-    }
-  }
-
-  @media (min-width: 600px) and (max-width: 959px) {
-    width: 220px;
-    
-    .menu-item {
-      padding: 12px 16px !important;
-      
-      &.collapsed {
-        padding: 12px 0 !important;
-        width: 70px;
-      }
-    }
-  }
-
-  @media (min-width: 960px) and (max-width: 1279px) {
-    width: 220px;
-    
-    .menu-item {
-      padding: 16px 20px !important;
-      
-      &.collapsed {
-        padding: 16px 0 !important;
-        width: 70px;
-      }
-    }
-  }
-
-  @media (min-width: 1280px) and (max-width: 1599px) {
-    width: 280px;
-    
-    .menu-item {
-      padding: 16px 24px !important;
-      
-      &.collapsed {
-        padding: 16px 0 !important;
-        width: 80px;
-      }
-    }
-  }
-
-  @media (min-width: 1600px) {
-    width: 300px;
-    
-    .menu-item {
-      padding: 18px 28px !important;
-      
-      &.collapsed {
-        padding: 18px 0 !important;
-        width: 80px;
+        background: rgba(101, 115, 195, 0.24) !important;
       }
     }
   }

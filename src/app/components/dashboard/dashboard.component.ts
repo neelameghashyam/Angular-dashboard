@@ -12,7 +12,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { DarkModeService } from '../../services/dark-theme/dark-mode.service';
 import { UserComponent } from "../../common/user/user.component";
 import { ResponsiveService } from '../../services/responsive.service';
-import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,7 +34,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class DashboardComponent {
   collapsed = signal(false);
-  notificationCount = signal(""); 
   currentLanguage = signal('English');
 
   constructor(
@@ -72,9 +70,6 @@ export class DashboardComponent {
 
   sidenavWidth = computed(() => {
     if (this.responsiveService.isMobile()) return '280px';
-    if (this.responsiveService.isTablet()) {
-      return this.collapsed() ? '70px' : '220px';
-    }
     return this.collapsed() ? '80px' : '280px';
   });
 

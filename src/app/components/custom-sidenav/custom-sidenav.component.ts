@@ -1,4 +1,4 @@
-import { Component, computed, Input, signal, inject, HostListener } from '@angular/core';
+import { Component, computed, Input, signal, inject } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -21,6 +21,7 @@ interface MenuItem {
 })
 export class CustomSidenavComponent {
   public responsiveService = inject(ResponsiveService);
+  public darkModeService = inject(DarkModeService);
   
   menuItems = signal<MenuItem[]>([
     { icon: 'dashboard', label: 'Dashboard', route: 'dashboard' },
@@ -34,31 +35,4 @@ export class CustomSidenavComponent {
   @Input() set collapsed(val: boolean) {
     this.sideNavCollapsed.set(val);
   }
-
-  shouldShowLabel = computed(() => {
-    return !this.sideNavCollapsed() || this.responsiveService.isMobile();
-  });
-
-  itemPadding = computed(() => {
-    if (this.responsiveService.isMobile()) return '12px 16px';
-    if (this.responsiveService.isTablet()) {
-      return this.sideNavCollapsed() ? '12px 0' : '12px 16px';
-    }
-    return this.sideNavCollapsed() ? '16px 0' : '16px 24px';
-  });
-
-  // Add this missing computed property
-  iconSize = computed(() => {
-    if (this.responsiveService.isMobile()) return '24px';
-    return this.sideNavCollapsed() ? '28px' : '24px'; // Larger when collapsed
-  });
-
-  @HostListener('window:resize')
-  onResize() {
-    if (!this.responsiveService.isMobile() && this.sideNavCollapsed()) {
-      this.sideNavCollapsed.set(false);
-    }
-  }
-
-  constructor(public darkModeService: DarkModeService) {}
 }
