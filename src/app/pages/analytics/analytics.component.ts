@@ -7,6 +7,5 @@ import { DarkModeService } from 'src/app/services/dark-theme/dark-mode.service';
   styleUrl: './analytics.component.scss'
 })
 export class AnalyticsComponent {
-    constructor(public darkModeService: DarkModeService) {}
 
 }

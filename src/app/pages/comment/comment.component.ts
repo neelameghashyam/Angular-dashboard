@@ -7,6 +7,5 @@ import { DarkModeService } from 'src/app/services/dark-theme/dark-mode.service';
   styleUrl: './comment.component.scss'
 })
 export class CommentComponent {
-    constructor(public darkModeService: DarkModeService) {}
 
 }
