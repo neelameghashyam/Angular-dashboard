@@ -1,0 +1,18 @@
+/* components/contact-info/contact-info.component.scss */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .contact-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .mat-list-item {
+    height: auto;
+    padding: 8px 0;
+  }

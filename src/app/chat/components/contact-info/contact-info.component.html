@@ -1,0 +1,32 @@
+<!-- components/contact-info/contact-info.component.html -->
+<div class="w-80 h-full p-4 bg-white dark:bg-gray-900 overflow-y-auto">
+    <div class="flex items-center mb-6">
+      <button mat-icon-button (click)="drawer.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <h2 class="ml-2 text-xl font-semibold">Contact Info</h2>
+    </div>
+  
+    <div class="flex flex-col items-center mb-6">
+      <div class="w-24 h-24 rounded-full overflow-hidden mb-4">
+        <img *ngIf="chat?.contact?.avatar" [src]="chat.contact.avatar" alt="Contact" class="w-full h-full object-cover">
+        <mat-icon *ngIf="!chat?.contact?.avatar" class="w-full h-full text-6xl">account_circle</mat-icon>
+      </div>
+      <h3 class="text-xl font-semibold">{{chat?.contact?.name}}</h3>
+      <p class="text-gray-500">{{chat?.contact?.about}}</p>
+    </div>
+  
+    <mat-divider class="my-4"></mat-divider>
+  
+    <h4 class="font-medium mb-2">Contact Details</h4>
+    <mat-list>
+      <mat-list-item *ngIf="chat?.contact?.details?.emails?.length">
+        <mat-icon mat-list-icon>email</mat-icon>
+        <div mat-line>{{chat.contact.details.emails[0].email}}</div>
+      </mat-list-item>
+      <mat-list-item *ngIf="chat?.contact?.details?.phoneNumbers?.length">
+        <mat-icon mat-list-icon>phone</mat-icon>
+        <div mat-line>{{chat.contact.details.phoneNumbers[0].phoneNumber}}</div>
+      </mat-list-item>
+    </mat-list>
+  </div>

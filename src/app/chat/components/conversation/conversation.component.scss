@@ -1,0 +1,16 @@
+/* components/conversation/conversation.component.scss */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .message-bubble {
+    max-width: 75%;
+    word-wrap: break-word;
+  }
+  
+  .message-time {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.54);
+  }

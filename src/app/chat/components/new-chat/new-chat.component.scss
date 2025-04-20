@@ -1,0 +1,14 @@
+/* components/new-chat/new-chat.component.scss */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .mat-nav-list {
+    padding: 0;
+  }
+  
+  .mat-list-item {
+    height: 72px;
+  }
