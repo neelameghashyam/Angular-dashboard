@@ -26,7 +26,6 @@ export class CustomSidenavComponent {
   menuItems = signal<MenuItem[]>([
     { icon: 'dashboard', label: 'Dashboard', route: 'dashboard' },
     { icon: 'assignment', label: 'Form', route: 'form' },
-    { icon: 'chat', label: 'Chat', route: 'chat' },
     { icon: 'analytics', label: 'Analytics', route: 'analytics' },
     { icon: 'comment', label: 'Comments', route: 'comments' },
   ]);

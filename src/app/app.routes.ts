@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { ContentComponent } from './pages/content/content.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
-import { Dashboard_Component } from './pages/dashboard/dashboard.component';
+import { Dashboard_Component } from './pages/dashboard/dashboard.component'; 
 import { UserFormComponent } from './pages/user-form/user-form.component';
-import { chatroutes } from './chat/chat-routing.module';
+
 export const routes: Routes = [
   { 
     path: 'dashboard', 
@@ -25,9 +25,7 @@ export const routes: Routes = [
     path: 'comments', 
     component: ContentComponent,
   },
-  // Add the chat routes
-  { 
-    path: 'chat', 
-    children: chatroutes
-  }
+ 
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'dashboard' }
 ];

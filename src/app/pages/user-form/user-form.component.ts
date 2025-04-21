@@ -32,6 +32,7 @@ import { DarkModeService } from 'src/app/services/dark-theme/dark-mode.service';
 export class UserFormComponent {
   userForm: FormGroup;
   submitted = false;
+  success = false; 
   countries = ['India', 'USA', 'UK', 'Germany', 'Canada'];
 
   constructor(
@@ -54,19 +55,15 @@ export class UserFormComponent {
 
   onSubmit() {
     this.submitted = true;
-  
-    if (this.userForm.invalid) return;
-  
-    console.log('Form Submitted:', this.userForm.value);
-  
-    // Reset the form and validation state
-    this.userForm.reset();
-    this.userForm.markAsPristine();
-    this.userForm.markAsUntouched();
-    Object.values(this.userForm.controls).forEach(control => {
-      control.setErrors(null);
-    });
-  
-    this.submitted = false;
+    
+    if (this.userForm.invalid) {
+      return;
+    }
+    const formData = { ...this.userForm.value };
+    console.log('Form Submitted:', formData);
+    
+    this.success = true;
+    
+
   }
 }
