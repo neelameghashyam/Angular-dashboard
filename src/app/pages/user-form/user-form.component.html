@@ -1,83 +1,88 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-container" [class.dark-mode]="darkModeService.darkMode()">
-  <!-- Row 1: Full Name & Email -->
-  <div class="form-row">
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="fullName"/>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="modern-form" [class.dark-mode]="darkModeService.darkMode()">  <!-- Row 1: Name and Email -->
+  <div class="grid-2">
+    <!-- Name -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName" placeholder="Full Name" required>
       <mat-icon matSuffix>person</mat-icon>
-      <mat-error *ngIf="submitted && f.fullName.errors?.required">
-        Name is required
-      </mat-error>
+      @if (userForm.get('fullName')?.hasError('required') && 
+          (userForm.get('fullName')?.touched || submitted)) {
+        <mat-error>Please enter your full name</mat-error>
+      }
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email"/>
+    <!-- Email -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Email" required>
       <mat-icon matSuffix>email</mat-icon>
-      <mat-error *ngIf="submitted && f.email.errors?.required">
-        Email is required
-      </mat-error>
-      <mat-error *ngIf="submitted && f.email.errors?.email">
-        Please enter a valid email
-      </mat-error>
+      @if (userForm.get('email')?.hasError('required') && 
+          (userForm.get('email')?.touched || submitted)) {
+        <mat-error>Email is required</mat-error>
+      }
+      @if (userForm.get('email')?.hasError('email') && 
+          (userForm.get('email')?.touched || submitted)) {
+        <mat-error>Please enter a valid email</mat-error>
+      }
     </mat-form-field>
   </div>
 
-  <!-- Row 2: Phone & DOB -->
-  <div class="form-row">
-    <mat-form-field>
+  <!-- Row 2: Phone and Date of Birth -->
+  <div class="grid-2">
+    <!-- Phone -->
+    <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>Phone Number</mat-label>
-      <input matInput formControlName="phoneNumber"/>
+      <input matInput formControlName="phone" placeholder="Phone Number" required>
       <mat-icon matSuffix>phone</mat-icon>
-      <mat-error *ngIf="submitted && f.phoneNumber.errors?.required">
-        Phone Number is required
-      </mat-error>
+      @if (userForm.get('phone')?.hasError('required') && 
+          (userForm.get('phone')?.touched || submitted)) {
+        <mat-error>Phone number is required</mat-error>
+      }
     </mat-form-field>
 
-    <mat-form-field>
+    <!-- Date of Birth -->
+    <mat-form-field appearance="fill" floatLabel="always">
       <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dob"/>
+      <input matInput [matDatepicker]="picker" formControlName="dob" placeholder="Date Of Birth"required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="submitted && f.dob.errors?.required">
-        Date of Birth is required
-      </mat-error>
+      @if (userForm.get('dob')?.hasError('required') && 
+          (userForm.get('dob')?.touched || submitted)) {
+        <mat-error>Please select your date of birth</mat-error>
+      }
     </mat-form-field>
   </div>
 
   <!-- Address -->
-  <mat-form-field class="full-width-field">
-    <mat-label>Address</mat-label>
-    <textarea matInput formControlName="address" rows="2"></textarea>
-    <mat-icon matSuffix>home</mat-icon>
-    <mat-error *ngIf="submitted && f.address.errors?.required">
-      Address is required
-    </mat-error>
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Full Address</mat-label>
+    <textarea matInput formControlName="address" 
+              placeholder="Address" 
+              rows="2" required></textarea>
+    @if (userForm.get('address')?.hasError('required') && 
+        (userForm.get('address')?.touched || submitted)) {
+      <mat-error>Please enter your address</mat-error>
+    }
   </mat-form-field>
 
   <!-- Country -->
-  <mat-form-field floatLabel="always" class="full-width-field">
+  <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>Country</mat-label>
-    <mat-select formControlName="country">
+    <mat-select formControlName="country" required>
       <mat-option value="">-- Select Country --</mat-option>
       <mat-option *ngFor="let c of countries" [value]="c">{{ c }}</mat-option>
     </mat-select>
-    <mat-icon matSuffix>public</mat-icon>
-    <mat-error *ngIf="submitted && f.country.errors?.required">
-      Please select a country
-    </mat-error>
+    @if (userForm.get('country')?.hasError('required') && 
+        (userForm.get('country')?.touched || submitted)) {
+      <mat-error>Please select your country</mat-error>
+    }
   </mat-form-field>
 
   <!-- Submit Button -->
-  <div class="form-actions">
-    <button mat-raised-button color="primary" type="submit" class="submit-button">
+  <div class="submit-container">
+    <button mat-raised-button color="primary" type="submit" class="submit-btn">
       Submit
+      <mat-icon>send</mat-icon>
     </button>
   </div>
 </form>
-
-<!-- Success Message -->
-<div *ngIf="submitted && success" class="success-message">
-  <mat-icon class="success-icon">check_circle</mat-icon>
-  <span>Your information has been submitted successfully!</span>
-</div>

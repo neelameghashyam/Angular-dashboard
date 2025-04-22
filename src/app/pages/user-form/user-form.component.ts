@@ -1,6 +1,8 @@
+// user-form.component.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material modules
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,7 +34,7 @@ import { DarkModeService } from 'src/app/services/dark-theme/dark-mode.service';
 export class UserFormComponent {
   userForm: FormGroup;
   submitted = false;
-  success = false; 
+
   countries = ['India', 'USA', 'UK', 'Germany', 'Canada'];
 
   constructor(
@@ -42,7 +44,7 @@ export class UserFormComponent {
     this.userForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
+      phone: ['', Validators.required],
       dob: ['', Validators.required],
       address: ['', Validators.required],
       country: ['', Validators.required]
@@ -55,15 +57,20 @@ export class UserFormComponent {
 
   onSubmit() {
     this.submitted = true;
-    
-    if (this.userForm.invalid) {
-      return;
-    }
-    const formData = { ...this.userForm.value };
-    console.log('Form Submitted:', formData);
-    
-    this.success = true;
-    
+  
+    if (this.userForm.invalid) return;
+  
+    console.log('Form Submitted:', this.userForm.value);
+    this.resetForm();
+  }
 
+  resetForm() {
+    this.userForm.reset();
+    this.userForm.markAsPristine();
+    this.userForm.markAsUntouched();
+    Object.values(this.userForm.controls).forEach(control => {
+      control.setErrors(null);
+    });
+    this.submitted = false;
   }
 }

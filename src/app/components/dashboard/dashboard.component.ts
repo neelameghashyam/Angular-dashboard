@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,6 +12,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { DarkModeService } from '../../services/dark-theme/dark-mode.service';
 import { UserComponent } from "../../common/user/user.component";
 import { ResponsiveService } from '../../services/responsive.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,9 +34,9 @@ import { ResponsiveService } from '../../services/responsive.service';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  collapsed = signal(false);
+  collapsed = signal(true);
   currentLanguage = signal('English');
-
+  themeService = inject(ThemeService);
   constructor(
     public darkModeService: DarkModeService,
     public responsiveService: ResponsiveService
@@ -70,7 +71,7 @@ export class DashboardComponent {
 
   sidenavWidth = computed(() => {
     if (this.responsiveService.isMobile()) return '280px';
-    return this.collapsed() ? '80px' : '280px';
+    return this.collapsed() ? '64px' : '280px';
   });
 
   sidenavMode = computed(() => {

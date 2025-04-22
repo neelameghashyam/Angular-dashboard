@@ -1,0 +1,43 @@
+@use "@angular/material" as mat;
+@import "./app/themes/themes.css";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
+}
+
+// Include core Angular Material styles
+@include mat.core();
+
+// Apply theme to Angular Material components
+.mat-mdc-button, .mat-mdc-outlined-button {
+  @include mat.button-theme((
+    color: (
+      primary: var(--mat-sys-primary),
+      on-primary: var(--mat-sys-on-primary),
+    )
+  ));
+}
+
+.mat-mdc-card {
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+.mat-mdc-menu-panel {
+  background-color: var(--mat-sys-surface-container) !important;
+  
+  .mat-mdc-menu-item {
+    color: var(--mat-sys-on-surface) !important;
+    
+    &:hover {
+      background-color: var(--mat-sys-surface-container-hover) !important;
+    }
+  }
+}
